@@ -1,5 +1,6 @@
 import { NUMBER_OF_POKEMON, POKEMON_API_URL } from "@/lib/constants";
-import { IPokemon, PokemonSchema } from "@/schemas/pokemon";
+import { PokemonSchema } from "@/schemas/pokemon";
+import { IPokemon } from "@/types/pokemon";
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 

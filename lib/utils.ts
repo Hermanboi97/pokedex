@@ -1,4 +1,4 @@
-import { IPokemon } from "@/schemas/pokemon";
+import { IPokemon, TransformedPokemon } from "@/types/pokemon";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -11,25 +11,25 @@ export function cn(...inputs: ClassValue[]) {
  * @param pokemonData - The raw pokemon data
  * @returns The transformed pokemon data
  */
-export const transformPokemonData = (pokemonData: IPokemon | null) => {
+export const transformPokemonData = (
+  pokemonData: IPokemon | null
+): TransformedPokemon | null => {
   if (!pokemonData) return null;
 
   return {
     id: pokemonData.id,
     name: pokemonData.name,
-    types: pokemonData.types.map((t: IPokemon["types"][number]) => t.type.name),
+    types: pokemonData.types.map(({ type }) => type.name),
     image:
-      pokemonData.sprites.other["official-artwork"].front_default ||
+      pokemonData.sprites.other?.["official-artwork"]?.front_default ??
       pokemonData.sprites.front_default,
-    moves: pokemonData.moves.map((m: IPokemon["moves"][number]) => m.move.name),
+    moves: pokemonData.moves.map(({ move }) => move.name),
     height: pokemonData.height,
     weight: pokemonData.weight,
-    abilities: pokemonData.abilities.map(
-      (a: IPokemon["abilities"][number]) => a.ability.name
-    ),
-    stats: pokemonData.stats.map((s: IPokemon["stats"][number]) => ({
-      name: s.stat.name,
-      value: s.base_stat,
+    abilities: pokemonData.abilities.map(({ ability }) => ability.name),
+    stats: pokemonData.stats.map(({ stat, base_stat }) => ({
+      name: stat.name,
+      value: base_stat,
     })),
   };
 };

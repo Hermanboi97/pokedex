@@ -3,6 +3,7 @@
 import { Button } from "@/components/Button";
 import { Loader } from "@/components/Loader";
 import { transformPokemonData } from "@/lib/utils";
+import { TransformedPokemon } from "@/types/pokemon";
 import { AnimatePresence } from "framer-motion";
 import { RefreshCcw } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -18,7 +19,7 @@ export default function Home() {
     setSearchTerm(pokemonName);
   };
 
-  const transformedPokemon = useMemo(
+  const transformedPokemon: TransformedPokemon | null = useMemo(
     () => transformPokemonData(pokemon),
     [pokemon]
   );

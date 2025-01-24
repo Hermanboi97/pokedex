@@ -24,7 +24,7 @@ export const STATS_ICON_MAP = {
   "special-attack": Zap,
   "special-defense": ShieldPlus,
   speed: Wind,
-};
+} as const;
 
 export const NUMBER_OF_POKEMON = 898;
 

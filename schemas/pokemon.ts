@@ -27,5 +27,3 @@ export const PokemonSchema = z
     ),
   })
   .passthrough();
-
-export type IPokemon = z.infer<typeof PokemonSchema>;
